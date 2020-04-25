@@ -19,7 +19,8 @@ The process behind converting custom layers involves...
 Some of the potential reasons for handling custom layers are...
 
 - Custom layers needs to handle because without handling it model optimizer can not convert specific model to Intermediate Representation.
-- Model Optimizer does not know about the custom layers so it needs to taken care of adn also need to handle for handle unsupported layers at the time of inference.
+- Model Optimizer does not know about the custom layers so it needs to taken care of and also need to handle for handle unsupported layers at the time of inference.
+
 ## Comparing Model Performance
 
 My method(s) to compare models before and after conversion to Intermediate Representations
