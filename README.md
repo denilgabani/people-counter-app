@@ -1,7 +1,7 @@
-# people-counter-app
+# People-Counter-App
 People counter app is used for monitoring the people at specific area in real time.
 
-## step-by-step guide for converting tensorflow model to IR
+## Step-by-Step guide for Running the App
 ### Prerequisites
   - You need to install openvino successfully. <br/>
   See this [guide](https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html) for installing openvino.
