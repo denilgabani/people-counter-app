@@ -85,6 +85,9 @@ Go to the ssd_mobilenet_v2 directory and run the following command line:-
 python /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json --reverse_input_channel
 ```
 
+#### Step 4
+Create model directory in the app directory and move the generated .xml and .bin file into created model directory.
+
 #### Running the app
 **To install the ui follow the steps written in readme file of github profile**
 
