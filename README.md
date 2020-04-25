@@ -68,13 +68,9 @@ There are three components that need to be running in separate terminals for thi
 -   Node.js* Web server
 -   FFmpeg server
      
-Go to people-counter-python directory
-```
-cd <path_to_people-counter-python_directory>
-```
 * For mosca server:
    ```
-   cd webservice/server
+   cd <app_dir>/webservice/server
    npm install
    ```
 
@@ -94,10 +90,6 @@ cd <path_to_people-counter-python_directory>
 
 #### Run the application
 
-Go to people-counter-python directory:
-```
-cd <path_to_people-counter-python_directory>
-```
 ##### Step 1 - Start the Mosca server
 
 ```
