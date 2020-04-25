@@ -19,7 +19,7 @@ The process behind converting custom layers involves...
 Some of the potential reasons for handling custom layers are...
 
 - Custom layers needs to handle because without handling it model optimizer can not convert specific model to Intermediate Representation.
--
+- Model Optimizer does not know about the custom layers so it needs to taken care of adn also need to handle for handle unsupported layers at the time of inference.
 ## Comparing Model Performance
 
 My method(s) to compare models before and after conversion to Intermediate Representations
@@ -74,11 +74,11 @@ Download the pre-trained model from here:- http://download.tensorflow.org/models
 
 #### Step 2
 Extract the files:-
-`tar -xvf ssd_mobilenet_v2_coco_2018_03_29.tar.gz`
+```tar -xvf ssd_mobilenet_v2_coco_2018_03_29.tar.gz```
 
 #### Step 3
 Go to the ssd_mobilenet_v2 directory and run the following command line:-
-`python /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json --reverse_input_channel`
+```python /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json --reverse_input_channel```
 
 `
 
