@@ -98,3 +98,14 @@ source /opt/intel/openvino/bin/setupvars.sh -pyver 3.5
 python3 main.py -i resources/Pedestrain_Detect_2_1_1.mp4 -m model/frozen_inference_graph.xml -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so -d CPU -pt 0.6 | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -framerate 24 -i - http://localhost:8090/fac.ffm
 ```
 To see the output on a web based interface, open the link [http://localhost:8080](http://localhost:8080/) in a browser.
+
+
+## Demo video of Running the App with UI
+[![demo video with ui](https://img.youtube.com/vi/7ZihwA3PDwo/0.jpg)](https://www.youtube.com/watch?v=7ZihwA3PDwo)
+
+There is some lag in video because of poor network connection so please check the below demo video.
+
+## Demo video of Running the App with opencv window (without UI)
+[![demo video without ui](https://img.youtube.com/vi/TTmxVdDghvs/0.jpg)](https://www.youtube.com/watch?v=TTmxVdDghvs)
+
+
