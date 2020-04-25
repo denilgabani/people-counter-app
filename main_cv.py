@@ -133,7 +133,7 @@ def infer_on_stream(args):
     image_input_shape = infer_network.get_input_shape()
     print(image_input_shape)
     ret, frame = camera.read()
-    output_video = cv2.VideoWriter('output.mp4',0X00000021, 10, (frame_width,frame_height))
+    #output_video = cv2.VideoWriter('output.mp4',cv2.VideoWriter_fourcc(*'MPEG'), 10, (frame_width,frame_height))
     ### TODO: Loop until stream is over ###
     total_count=0
     pres_count = 0
@@ -169,7 +169,6 @@ def infer_on_stream(args):
         
             if pres_count>prev_count:
                 start_time = time.time()
-                total_count+=pres_count-prev_count
                 no_bbox=0
             elif pres_count<prev_count:
                 if no_bbox<=20:
@@ -179,13 +178,14 @@ def infer_on_stream(args):
                     pres_count=prev_count
                     no_bbox=0
                 else:
+                    total_count+=1
                     duration = int(time.time()-start_time)                    
             
             if not (tl==None and br==None):
                 prev_bbox_x=int((tl[0]+br[0])/2)
             
             prev_count=pres_count
-            output_video.write(box_frame)
+            #output_video.write(frame)
             
             ### TODO: Calculate and send relevant information on ###
             ### current_count, total_count and duration to the MQTT server ###
@@ -193,8 +193,8 @@ def infer_on_stream(args):
             ### Topic "person/duration": key of "duration" ###
             offset = int(box_h/10)
     
-            cv2.putText(frame, "Time:"+str(pres_count), (20, offset), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 3)
-            cv2.putText(frame, "count:"+str(duration), (20, offset+30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 3)
+            cv2.putText(frame, "Count:"+str(pres_count), (20, offset), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 3)
+            cv2.putText(frame, "Duration:"+str(duration), (20, offset+30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 3)
             cv2.putText(frame, "total_count:"+str(total_count), (20, offset+60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
         cv2.imshow("people counter",frame)
         
