@@ -42,7 +42,7 @@ python /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py --input_mod
 ```
 
 #### Step 4
-Move the generated .xml and .bin file to model directory of the app.
+Create model directory in the app and move the generated .xml and .bin file to .
 
 ### Running the app
 
