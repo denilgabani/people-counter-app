@@ -1,6 +1,24 @@
 # People-Counter-App
 People counter app is used for monitoring the people at specific area in real time.
 
+Some of the potential use cases of the people counter app are...
+1. people counter app can be use for count how many people visited for specific time
+    - In this app we can determine this by using total count and duration.
+2. people counter app can also used for intrusion detection for specific time.
+    - We can add a switch or define a specific time and when app detect any person during a specific time or when switch is on then app can give notification or sound an intrusion alert.
+3. people counter app can use for monitoring number of people can allow to present in the monitoring area.
+    - We can add a threshold of number people if when the count of detected people go above threshold then app can send a notification or sound an alert
+Each of these use cases would be useful because...
+- Using the people counter app we can easily monitor the specific area.
+- It can be use for intrusion detection and also for allowing limited people.
+
+## Demo video of Running the App with UI
+[![demo video with ui](https://img.youtube.com/vi/7ZihwA3PDwo/0.jpg)](https://www.youtube.com/watch?v=7ZihwA3PDwo)
+
+## Demo video of Running the App with opencv window (without UI)
+[![demo video without ui](https://img.youtube.com/vi/TTmxVdDghvs/0.jpg)](https://www.youtube.com/watch?v=TTmxVdDghvs)
+
+
 ## Step-by-Step guide for Running the App
 ### Prerequisites
   - You need to install openvino successfully. <br/>
@@ -27,6 +45,16 @@ python /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py --input_mod
 Move the generated .xml and .bin file to model directory of the app.
 
 ### Running the app
+
+#### Running the app in opencv Window (Without ui)
+Open the new terminal and run following commad:
+```
+cd <app dir>
+python main_cv.py -i resources/Pedestrian_Detect_2_1_1.mp4 -m model/frozen_inference_graph.xml -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so -d CPU -pt 0.6
+
+```
+
+#### Running the app in ui
 
 #### Prerequisites
 
