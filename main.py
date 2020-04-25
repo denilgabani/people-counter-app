@@ -28,7 +28,6 @@ import json
 import cv2
 import numpy as np
 
-import logging as log
 import paho.mqtt.client as mqtt
 
 from argparse import ArgumentParser
@@ -138,8 +137,6 @@ def infer_on_stream(args, client):
         camera = cv2.VideoCapture(filePath)
     ### TODO: Handle the input stream ###
     
-    #frame_width = int(camera.get(3))
-    #frame_height = int(camera.get(4))
     client.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE_INTERVAL)
     if (camera.isOpened()== False): 
         #print("Error opening video stream or file")
@@ -151,9 +148,8 @@ def infer_on_stream(args, client):
     image_input_shape = infer_network.get_input_shape()
     #print(image_input_shape)
     ret, frame = camera.read()
-    total_count=0
-    #output_video = cv2.VideoWriter('output.mp4',0X00000021, 10, (frame_width,frame_height))
     ### TODO: Loop until stream is over ###
+    total_count=0
     pres_count = 0
     prev_count=0
     start_time=0 
@@ -169,9 +165,7 @@ def infer_on_stream(args, client):
             break
         key = cv2.waitKey(60)
         ### TODO: Pre-process the image as needed ###
-        #frame_cvt = cv2.cvtColor(frame.copy(), cv2.COLOR_BGR2RGB)
         resized_frame = cv2.resize(next_frame.copy(), (image_input_shape[3], image_input_shape[2]))
-    
         frame_preproc = np.transpose(np.expand_dims(resized_frame.copy(), axis=0), (0,3,1,2))
         ### TODO: Start asynchronous inference for specified request ###
         infer_network.exec_net(frame_preproc.copy(), req_id=next_req_id)
@@ -181,7 +175,6 @@ def infer_on_stream(args, client):
             outputs = infer_network.get_output(cur_req_id)
             ### TODO: Extract any desired stats from the results ###
             frame, pres_count, bbox = extract_box(frame.copy(), outputs[0], prob_threshold)
-            box_h = frame.shape[0]
             box_w = frame.shape[1]
             tl, br = bbox #top_left, bottom_right
         
@@ -205,7 +198,6 @@ def infer_on_stream(args, client):
             prev_count=pres_count
                     
             client.publish("person", json.dumps({"count":pres_count}))
-            #output_video.write(box_frame)
             
             ### TODO: Calculate and send relevant information on ###
             ### current_count, total_count and duration to the MQTT server ###
