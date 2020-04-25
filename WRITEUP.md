@@ -101,9 +101,10 @@ To see the output on a web based interface, open the link [http://localhost:8080
 
 
 ## Demo video of Running the App with UI
+There is some lag in video because of poor network connection so please also check the opencv window demo video.
+
 [![demo video with ui](https://img.youtube.com/vi/7ZihwA3PDwo/0.jpg)](https://www.youtube.com/watch?v=7ZihwA3PDwo)
 
-There is some lag in video because of poor network connection so please check the below demo video.
 
 ## Demo video of Running the App with opencv window (without UI)
 [![demo video without ui](https://img.youtube.com/vi/TTmxVdDghvs/0.jpg)](https://www.youtube.com/watch?v=TTmxVdDghvs)
